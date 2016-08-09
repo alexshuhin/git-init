@@ -1,0 +1,236 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css">
+    <link rel="stylesheet" href="css/zenburn.css">
+    <link rel="stylesheet" href="css/highlight/railscasts.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-background='http://goodarzi.net/wp-content/uploads/2016/03/333.jpg'></section>
+
+        <section>
+          <section>
+            <h3>Что такое Система Контроля Версий?</h3>
+            <p>И как оно это все сделает нас счастливее?</p>
+          </section>
+          <section>
+            <p>
+              <img height="400" src="images/magic.gif" />
+            </p>
+          </section>
+        </section>
+
+        <section>
+          <h3>Из Wikipedia:</h3>
+          <blockqoute>
+            <b>Система управления версиями</b> <i>(от англ. Version Control System, VCS или Revision Control System)</i> — программное обеспечение для облегчения работы с изменяющейся информацией. Система управления версиями позволяет хранить несколько версий одного и того же документа, при необходимости возвращаться к более ранним версиям, определять, кто и когда сделал то или иное изменение, и многое другое.
+          </blockqoute>
+        </section>
+
+        <section>
+          <section>
+            <h3>Давайте включим воображение</h3>
+          </section>
+
+          <section>
+            <h3>Вы - разработчик-одиночка</h3>
+            <p class="fragment" data-fragment-index="0">Несколько компьютеров и нужно быстро менять рабочую машинку</p>
+            <p class="fragment" data-fragment-index="1">Не нужно заботиться о резервном копировании проекта</p>
+            <p class="fragment" data-fragment-index="2">Возможность заглянуть в историю изменений каждого файла</p>
+            <p class="fragment" data-fragment-index="3">Экспериментировать, не боясь запустить хаос в свой <i>"идеальный&nbsp;код"</i></p>
+            <p class="fragment" data-fragment-index="4">Следить за своим процессом разработки</p>
+            <p class="fragment" data-fragment-index="5">Автоматизация публикации кода</p>
+          </section>
+
+          <section>
+            <h3>Вы - работаете в команде</h3>
+            <p class="fragment" data-fragment-index="0">Одновременная разработка одного проекта</p>
+            <p class="fragment" data-fragment-index="1">Найти кто наговнокодил</p>
+            <p class="fragment" data-fragment-index="2">Наслаждаться когда другие коммитят</p>
+            <p class="fragment" data-fragment-index="3">Ревью кода</p>
+            <p class="fragment" data-fragment-index="4">Интеграция с менеджером задач</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>(C)VCS vs DVCS = DVCS wins</h3>
+          </section>
+
+          <section>
+            <h3>Centralized Version Control System</h3>
+            <p>Клиент-серверная ирхитектура</p>
+            <p>
+              <img height="400" src="images/centralized.png">
+            </p>
+            <p>CVS (утарел), SVN, Team Foundation Version Control (TFVC)</p>
+          </section>
+
+          <section>
+            <h3>Decentralized (Distributed) Version Control System</h3>
+            <p>Peer-to-peer ирхитектура</p>
+            <p>
+              <img height="400" src="images/distributed.png">
+            </p>
+            <p>Git, Mercurial, Bazaar</p>
+          </section>
+
+          <section class="fragments">
+            <h3>Почему DVCS &gt; (C)VCS</h3>
+            <p class="fragment" data-fragment-index="0">Работа в оффлайне, не нужен сервер чтобы работать с историей и делать коммиты</p>
+            <p class="fragment" data-fragment-index="1">Дешевое ветвление, быстрый переход между коммитами/ветками и операциями с ними</p>
+            <p class="fragment" data-fragment-index="2">Центральный сервер не является единой точкой отказа. Вы не потеряете данные если сервер сгорит, даже если не делались бекапы</p>
+            <p class="fragment" data-fragment-index="3">Возможность работы с удаленным репозиторием через любой удобный протокол обмена файлами: https, ssh, ftp, nfs и т.д.</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>GIT</h3>
+            <p>"the stupid content tracker" &copy; man git</p>
+          </section>
+
+          <section>
+            <h3>Немного истории</h3>
+          </section>
+
+          <section>
+            <p>
+              <img src="images/linus.png" />
+            </p>
+          </section>
+
+          <section>
+            <p>Linus Torvalds начал разработку Git в апреле 2005 года</p>
+            <p class="fragment" data-fragment-index="0">16 июня 2015 года с помощью git был сделан релиз ядра Linux</p>
+            <p class="fragment" data-fragment-index="1">25 декабря того же года увидела свет первая версия Git</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Основные моменты Git</h3>
+          </section>
+
+          <section>
+            <h3>Репозиторий</h3>
+            <p>Это информация о всех изменениях в проекте с момента первого коммита</p>
+            <p>Явным признаком того что данная директория находится под контролем Git - папочка .git в корне проекта</p>
+            <p>Туда без понимания, как оно устроено, лазить бесполезно, да и вряд ли это когда либо потребуется</p>
+          </section>
+
+          <section>
+            <h3>Коммит</h3>
+            <p>Коммит - это фиксация изменений в истории проекта</p>
+            <p>
+              <img src="images/git-index.png" />
+            </p>
+          </section>
+
+          <section>
+            <h3>Дерево коммитов</h3>
+            <p>Коммиты выстраиваются в дерево таким образом, что у каждого коммита (кроме первого) есть родительский коммит (а то и несколько)</p>
+            <p>По дереву можно наглядно продемонстрировать создание кода во времени</p>
+            <p>
+              <img src="images/git-tree.png" />
+            </p>
+          </section>
+
+          <section>
+            <h3>Ветка</h3>
+            <p>Указатель на коммит(!), которая продвигается вместе с новыми коммитами</p>
+            <p>Ветки удобны для распараллеливания работы над проектом</p>
+            <p>
+              <img src="images/git-branch.png" />
+            </p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Установка</h3>
+          </section>
+
+          <section>
+            <p>Установка на windows</p>
+
+            <p>Установка на macos</p>
+            <pre><code>brew install git</code></pre>
+
+            <p>Установка на linux (ubuntu)</p>
+            <pre><code>apt-get install git</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <p>Инициализируем репозиторий</p>
+          <pre><code>git init</code></pre>
+          <p>Делаем первый коммит</p>
+          <pre><code>git commit -m 'initial commit'</code></pre>
+        </section>
+
+        <section>
+          <h2>Александр Шухин</h2>
+          <p>Email: <a href="mailto:a.medium@gmail.com">a.medium@gmail.com</a></p>
+          <p>Telegram: @alex_medium</a></p>
+          <p>Github: <a href="https://github.com/alexshuhin">alexshuhin</a></p>
+        </section>
+      </div>
+    </div>
+
+    <script src="js/reveal.js"></script>
+    <script src="js/highlight.pack.js"></script>
+    <script>
+      Reveal.initialize();
+      hljs.initHighlightingOnLoad();
+    </script>
+    <script id="__bs_script__">//<![CDATA[
+    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.14.0.js'><\/script>".replace("HOST", location.hostname));
+//]]></script>
+  </body>
+</html>
+
+<!--
+1. Что такое система контроля версий:
+
+Что дает инструмент:
+  Если бы человек работал один над проектом:
+    - Работа с кодовой базой на нескольких компьютерах
+    - Резервирование кода
+    - Ревизия кода с возможностью восстановления
+    - Возможность быстро попробовать вариант, не портя код без боли откатываться на предыдущую вепсию
+    - Мотивировать себя историей частых коммитов, как наглядный показатель производительности
+    - CI, способ разворачивания продукта на боевом сервере
+
+  Если бы человек работал в команде:
+    - Одновременная работа с одними и теми же файлами, одним проектом
+    - Выявление ответственного человека за говнокод
+    - Трекинг активности через коммиты
+    - Ревью кода ответственными людьми (гитлаб, локальный репозиторий)
+    - Сложности связанными в рабочим процессом, интеграцией с issue трекерами
+
+2. Какие системы контроля версий существуют
+
+Рассказать про CVS и DVS
+  CVS: CVS, Svn
+  DVS: Git, Mercurial, Bazaar
+
+DVS vs CVS, преимущества и недостатки. Особенности DVS по сравнению с CVS:
+
+Преимущества:
+
+"Недостатки":
+  - Освоение инструмента сложнее - ну что поделаешь!
+  - Полная копия проекта при клонировании, невозможность работать с частью проекта, с отдельной директорией
+  - Система разграничения прав не входит в Git. Это прерогатива сторонних инструментов, например Gitlab, Github и прочих сервисов
+
+3. История Git:
+
+Почему и когда появился Git. Почему он консольный, и почему это хорошо. Какие есть варианты не думать о консоле.
+Во что конкретно вырос Git, что такое Github и прочие инструменты для удобства кодопроизводства.
+
+4. Начинаем работать с Git
+
+-->
