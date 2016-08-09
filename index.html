@@ -8,81 +8,119 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section data-background='http://goodarzi.net/wp-content/uploads/2016/03/333.jpg'></section>
+        <section>
+          <section data-background='http://goodarzi.net/wp-content/uploads/2016/03/333.jpg'></section>
+        </section>
+
+        <section>
+          <h2>Александр Шухин</h2>
+          <p>Email: <a href="mailto:a.medium@gmail.com">a.medium@gmail.com</a></p>
+          <p>Telegram: @alex_medium</a></p>
+          <p>Github: <a href="https://github.com/alexshuhin">alexshuhin</a></p>
+        </section>
+
+        <section>
+          <section>
+            <h3>План лекции</h3>
+            <p>Подготовим машинки к Git в консоле</p>
+            <p>Немного расскажу про Git</p>
+            <p>Разберем очень сложные для понимания моменты</p>
+            <p>Поиграемся в консольке все вместе</p>
+            <p>Выполним тестовое задание индивидуально</p>
+          </section>
+
+          <section>
+            <h2>Установка git на macOS</h2>
+            <p>Проверяем установлен ли Git</p>
+            <p><pre><code>git --version</code></pre></p>
+            <p>Если нет, то:</p>
+            <p>Открываем консоль iTerm</p>
+            <p>Устанавливаем Homebrew c помощью команды</p>
+            <p><pre><code>/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</code></pre></p>
+            <p>Устанавливаем Git</p>
+            <p><pre><code>brew install git</code></pre></p>
+          </section>
+
+          <section>
+            <h2>Установка git на Linux</h2>
+            <p>Проверяем установлен ли Git</p>
+            <p><pre><code>git --version</code></pre></p>
+            <p>Если нет, то:</p>
+            <p>Открываем консоль gnome-terminal</p>
+            <p>Устанавливаем Git</p>
+            <p><pre><code>apt-get install git</code></pre></p>
+          </section>
+
+          <section>
+            <h2>Установка git на Windows</h2>
+            <p>Заходим на <a href="https://git-scm.com/">https://git-scm.com/</a></p>
+            <p>Устанавливаем Git</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Немного о консоле</h3>
+          </section>
+
+          <section>
+            <p><c>pwd</c> - узнаем в какой директории находимся</p>
+            <p class="fragment"><c>ls</c> - листинг файлов текущей директории</p>
+            <p class="fragment"><c>ls -la ./path</c> - листинг файлов указанной директории, <c>-l</c> вывод в формате листа, <c>-a</c> вывод спрятанных файлов</p>
+            <p class="fragment">Пути как в Windows, только вместо <c>\</c> -&gt; <c>/</c>, к примеру <c>styles/common/main.css</c></p>
+            <p class="fragment">Файловая система регистрозависимая - <c>App.js</c> и <c>app.js</c> - не один и тот же файл</p>
+          </section>
+
+          <section>
+            <p><c>mkdir new_dir</c> - создаем директорию new_dir в текущей директории</p>
+            <p class="fragment"><c>cd new_dir</c> - смена текущей директории</p>
+            <p class="fragment">
+              <c>..</c> - выход из текущей директории,
+              <c>~</c> - домашняя директория,
+              <c>.</c> - текущая директория,
+              <c>/</c> - путь от корня файловой системы
+            </p>
+            <p class="fragment">Файлы/директории начинающиеся с точки, например <c>.git</c> считаются в мире unix скрытыми</p>
+          </section>
+        </section>
 
         <section>
           <section>
             <h3>Что такое Система Контроля Версий?</h3>
-            <p>И как оно это все сделает нас счастливее?</p>
           </section>
-          <section>
+        </section>
+
+        <section>
+          <p>
+            <b>Система управления версиями</b> <i>(Version Control System, VCS)</i> — программное обеспечение для облегчения работы с изменяющейся информацией
             <p>
-              <img height="400" src="images/magic.gif" />
+              <a href="https://ru.wikipedia.org/wiki/Система_управления_версиями">Википедия — Системы Контроля Версий</a>
             </p>
-          </section>
-        </section>
-
-        <section>
-          <h3>Из Wikipedia:</h3>
-          <blockqoute>
-            <b>Система управления версиями</b> <i>(от англ. Version Control System, VCS или Revision Control System)</i> — программное обеспечение для облегчения работы с изменяющейся информацией. Система управления версиями позволяет хранить несколько версий одного и того же документа, при необходимости возвращаться к более ранним версиям, определять, кто и когда сделал то или иное изменение, и многое другое.
-          </blockqoute>
+          </p>
         </section>
 
         <section>
           <section>
-            <h3>Давайте включим воображение</h3>
+            <h3>Давайте представим</h3>
           </section>
 
           <section>
             <h3>Вы - разработчик-одиночка</h3>
-            <p class="fragment" data-fragment-index="0">Несколько компьютеров и нужно быстро менять рабочую машинку</p>
-            <p class="fragment" data-fragment-index="1">Не нужно заботиться о резервном копировании проекта</p>
-            <p class="fragment" data-fragment-index="2">Возможность заглянуть в историю изменений каждого файла</p>
-            <p class="fragment" data-fragment-index="3">Экспериментировать, не боясь запустить хаос в свой <i>"идеальный&nbsp;код"</i></p>
-            <p class="fragment" data-fragment-index="4">Следить за своим процессом разработки</p>
-            <p class="fragment" data-fragment-index="5">Автоматизация публикации кода</p>
+            <p class="fragment">Несколько рабочих компьютеров, на которых приходится работать над одним проектом</p>
+            <p class="fragment">Не нужно заботиться о резервном копировании проекта</p>
+            <p class="fragment">Возможность заглянуть в историю изменений каждого файла</p>
+            <p class="fragment">Экспериментировать, не боясь испортить работающий код</p>
+            <p class="fragment">Следить за своим процессом разработки</p>
+            <p class="fragment">Публикация кода на сервере</p>
           </section>
 
           <section>
             <h3>Вы - работаете в команде</h3>
-            <p class="fragment" data-fragment-index="0">Одновременная разработка одного проекта</p>
-            <p class="fragment" data-fragment-index="1">Найти кто наговнокодил</p>
-            <p class="fragment" data-fragment-index="2">Наслаждаться когда другие коммитят</p>
-            <p class="fragment" data-fragment-index="3">Ревью кода</p>
-            <p class="fragment" data-fragment-index="4">Интеграция с менеджером задач</p>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h3>(C)VCS vs DVCS = DVCS wins</h3>
-          </section>
-
-          <section>
-            <h3>Centralized Version Control System</h3>
-            <p>Клиент-серверная ирхитектура</p>
-            <p>
-              <img height="400" src="images/centralized.png">
-            </p>
-            <p>CVS (утарел), SVN, Team Foundation Version Control (TFVC)</p>
-          </section>
-
-          <section>
-            <h3>Decentralized (Distributed) Version Control System</h3>
-            <p>Peer-to-peer ирхитектура</p>
-            <p>
-              <img height="400" src="images/distributed.png">
-            </p>
-            <p>Git, Mercurial, Bazaar</p>
-          </section>
-
-          <section class="fragments">
-            <h3>Почему DVCS &gt; (C)VCS</h3>
-            <p class="fragment" data-fragment-index="0">Работа в оффлайне, не нужен сервер чтобы работать с историей и делать коммиты</p>
-            <p class="fragment" data-fragment-index="1">Дешевое ветвление, быстрый переход между коммитами/ветками и операциями с ними</p>
-            <p class="fragment" data-fragment-index="2">Центральный сервер не является единой точкой отказа. Вы не потеряете данные если сервер сгорит, даже если не делались бекапы</p>
-            <p class="fragment" data-fragment-index="3">Возможность работы с удаленным репозиторием через любой удобный протокол обмена файлами: https, ssh, ftp, nfs и т.д.</p>
+            <p class="fragment">Одновременная разработка одного проекта</p>
+            <p class="fragment">Защита от вандализма, выявление виновных</p>
+            <p class="fragment">Наслаждаться когда другие работают</p>
+            <p class="fragment">Просмотр кода с коллегами</p>
+            <p class="fragment">Интеграция с менеджером задач, такие как Jira, Youtrack, Trello и прочее</p>
           </section>
         </section>
 
@@ -94,18 +132,13 @@
 
           <section>
             <h3>Немного истории</h3>
-          </section>
 
-          <section>
-            <p>
-              <img src="images/linus.png" />
+            <p class="fragment">
+              <p><img height="300" src="images/linus.jpg" /></p>
+              <p>Linus Torvalds начал разработку Git в апреле 2005 года</p>
             </p>
-          </section>
-
-          <section>
-            <p>Linus Torvalds начал разработку Git в апреле 2005 года</p>
-            <p class="fragment" data-fragment-index="0">16 июня 2015 года с помощью git был сделан релиз ядра Linux</p>
-            <p class="fragment" data-fragment-index="1">25 декабря того же года увидела свет первая версия Git</p>
+            <p class="fragment">16 июня 2015 года с помощью git был сделан релиз ядра Linux</p>
+            <p class="fragment">25 декабря того же года увидела свет первая версия Git</p>
           </section>
         </section>
 
@@ -115,10 +148,16 @@
           </section>
 
           <section>
+            <p>Git распределенная система контроля версий (DVCS)</p>
+            <p>Вам не обязательно иметь сервер для того чтобы обмениваться кодом</p>
+            <p>Вы можете работать локально со своей версией</p>
+          </section>
+
+          <section>
             <h3>Репозиторий</h3>
             <p>Это информация о всех изменениях в проекте с момента первого коммита</p>
             <p>Явным признаком того что данная директория находится под контролем Git - папочка .git в корне проекта</p>
-            <p>Туда без понимания, как оно устроено, лазить бесполезно, да и вряд ли это когда либо потребуется</p>
+            <p>Её можно удалить, Вы просто потеряете историю проекта</p>
           </section>
 
           <section>
@@ -132,51 +171,347 @@
           <section>
             <h3>Дерево коммитов</h3>
             <p>Коммиты выстраиваются в дерево таким образом, что у каждого коммита (кроме первого) есть родительский коммит (а то и несколько)</p>
-            <p>По дереву можно наглядно продемонстрировать создание кода во времени</p>
+            <p>Наглядно это выглядит так</p>
             <p>
               <img src="images/git-tree.png" />
             </p>
           </section>
 
           <section>
-            <h3>Ветка</h3>
-            <p>Указатель на коммит(!), которая продвигается вместе с новыми коммитами</p>
-            <p>Ветки удобны для распараллеливания работы над проектом</p>
+            <h4>Связь между родительским и дочерним коммитами</h3>
             <p>
-              <img src="images/git-branch.png" />
+            <pre><code class="html">
+&lt;ul&gt;
+  &lt;li&gt;Item 1&lt;/li&gt;
+  &lt;li&gt;Item 2&lt;/li&gt;
+  &lt;li&gt;Item 3&lt;/li&gt;
+&lt;/ul&gt;
+            </code></pre>
+            </p>
+
+            <p>
+            <pre><code>
+&lt;ul&gt;
+  &lt;li&gt;Item 1&lt;/li&gt;
+  &lt;li&gt;Item 4&lt;/li&gt;
+  &lt;li&gt;Item 3&lt;/li&gt;
+&lt;/ul&gt;
+            </code></pre>
+            </p>
+            <p>
+            <pre><code>
+diff --git a/test.html b/test.html
+index 4e1e5e4..23cdccd 100644
+--- a/test.html
++++ b/test.html
+@@ -1,5 +1,5 @@
+ <ul>
+   &lt;li>Item 1&lt;/li>
+-  &lt;li>Item 2&lt;/li>
++  &lt;li>Item 4&lt;/li>
+   &lt;li>Item 3&lt;/li>
+ </ul>
+            </code></pre>
+            </p>
+          </section>
+
+          <section>
+            <h3>Ветка</h3>
+            <p>Альтернативная реальность вашего репозитория</p>
+            <p>
+              <img src="images/git-branch.jpg" />
+            </p>
+          </section>
+        </section>
+
+        <section>
+          <p>
+            <img height="400" src="images/magic.gif" />
+          </p>
+        </section>
+
+        <section>
+          <p>Первоначальная настройка Git</p>
+          <pre><code>
+&gt; git config --global user.name "Василий Пупкин"
+&gt; git config --global user.email vasiliy.pupkin@gmail.com
+          </code></pre>
+        </section>
+
+        <section>
+          <p>Делаем репозиторий</p>
+          <pre><code>
+&gt; mkdir my_project
+&gt; cd my_project
+&gt; pwd
+/path/to/my_project
+          </code></pre>
+          <p>Инициализируем репозиторий</p>
+          <pre><code>
+&gt; git init
+Инициализирован пустой репозиторий Git в /path/to/my_project/.git/
+          </code></pre>
+
+          <p>Смотрим что у нас получилось</p>
+          <pre><code>
+&gt; ls -la
+итого 12
+drwxr-xr-x  3 medium users 4096 авг  9 14:18 .
+drwxr-xr-x 13 medium users 4096 авг  9 14:18 ..
+drwxr-xr-x  7 medium users 4096 авг  9 14:19 .git
+          </code></pre>
+        </section>
+
+        <section>
+          <section>
+            <h3>Первый коммит</h3>
+            <p>Создадим файл <c>index.html</c></p>
+
+            <p>Всегда можем узнать о состоянии репозитория</p>
+            <pre><code>
+&gt; git status
+На ветке master
+
+Начальный коммит
+
+Неотслеживаемые файлы:
+  (используйте «git add <файл>…», чтобы добавить в то, что будет включено в коммит)
+
+  index.html
+
+ничего не добавлено в коммит, но есть неотслеживаемые файлы (используйте «git add», чтобы отслеживать их)
+            </code></pre>
+          </section>
+
+          <section>
+            <p>Скажем чтобы git начал следить за файлом, добавив этот файл в индекс</p>
+            <pre><code>git add index.html</code></pre>
+            <p>Как дела?</p>
+            <pre><code>
+&gt; git status
+На ветке master
+
+Начальный коммит
+
+Изменения, которые будут включены в коммит:
+  (используйте «git rm --cached <файл>…», чтобы убрать из индекса)
+
+	новый файл:    index.html
+            </code></pre>
+          </section>
+
+          <section>
+            <p>Говорим git'у зафиксировать изменения</p>
+            <pre><code>
+&gt; git commit -m 'initial commit (any comment)'
+[master (корневой коммит) 817c15c] initial commit (any comment)
+ 1 file changed, 10 insertions(+)
+  create mode 100644 index.html
+            </code></pre>
+            <p>Ну и последний раз</p>
+            <pre><code>
+&gt; git status
+На ветке master
+нечего коммитить, нет изменений в рабочем каталоге
+            </code></pre>
+          </section>
+
+          <section>
+            <p>Посмотрим на историю</p>
+            <pre><code>
+&gt; git log
+commit 817c15c7a3ffcc3242613da0bbd5a059d4a6ee01
+Author: Alexander Shuhin <a.medium@gmail.com>
+Date:   Tue Aug 9 14:45:02 2016 +0300
+
+    initial commit (any comment)
+            </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Нужно больше коммитов</h3>
+            <p>Поправим наш <c>index.html</c> и добавим стилей</p>
+            <p>С помощью diff узнаем что изменилось в index.html</p>
+            <pre><code>&gt; git diff index.html</code></pre>
+            <p>Или сразу по всему проекту</p>
+            <pre><code>&gt; git diff</code></pre>
+            <p>Посмотрим что произошло, и добавим все это в наш индекс</p>
+            <pre><code>&gt; git add index.html css</code></pre>
+            <p>Делаем очередной коммит</p>
+            <pre><code>&gt; git commit -m 'add styles to index.html'</code></pre>
+          </section>
+          <section>
+            <p>Теперь посмотрим на наше дерево коммитов</p>
+            <pre><code>
+&gt; git log --graph --oneline
+* 9cdf09f add styles to index.html
+* 817c15c initial commit (any comment)
+            </code></pre>
+            <p>Уииии! Теперь у нас есть история</p>
+          </section>
+          <section>
+            <p>Мы можем узнать как изменился файл с последнего коммита</p>
+            <p>
+              <img src="images/git-diff.png" />
             </p>
           </section>
         </section>
 
         <section>
           <section>
-            <h3>Установка</h3>
+            <h3>Работаем с ветками</h3>
+            <p>Ветки это всего лишь ссылка на коммит</p>
+            <p>С помощью веток мы продвигаем историю</p>
           </section>
 
           <section>
-            <p>Установка на windows</p>
+            <p>Как это выглядит?</p>
+            <p>
+            <img height="500" src="images/git-branch2.png" />
+            </p>
+          </section>
 
-            <p>Установка на macos</p>
-            <pre><code>brew install git</code></pre>
+          <section>
+            <p>Давайте на практике</p>
+            <p>
+              <p>Делаем ветку, которая будет указывать на текущий коммит</p>
+              <pre><code>&gt; git branch new_branch</code></pre>
+            </p>
+            <p>Мы по прежнему находимся в ветке master (git status в помощь)</p>
+            <p>
+              <p>Перейдем в новоиспеченную ветку</p>
+              <pre><code>&gt; git checkout new_branch</code></pre>
+            </p>
+            <p>Сделаем правки и посмотрим на историю</p>
+            <pre><code>
+&gt; git log --graph --oneline --decorate
+* 4f41bd7 (HEAD -> new_branch) add bang to hello world
+* 9cdf09f (master) add styles to index.html
+* 817c15c initial commit (any comment)
+            </code></pre>
+          </section>
 
-            <p>Установка на linux (ubuntu)</p>
-            <pre><code>apt-get install git</code></pre>
+          <section>
+            <p>Теперь давайте переместимся во времени</p>
+            <p>Переходим на ветку master</p>
+            <pre><code>&gt; git checkout master</code></pre>
+            <p>Сделаем правку и закоммитим. Посмотрим историю</p>
+            <p>
+            <img src="images/git-branch3.png" />
+            </p>
+          </section>
+
+          <section>
+            <p>Теперь мы имеем 2 ветки.</p>
+            <p>Мы можем объединить правки с помощью <c>git merge</c></p>
+            <pre><code>&gt; git merge new_branch</code></pre>
+            <p>Git попросит нас поправить комментарий</p>
+            <p>Смотрим историю</p>
+            <p>
+            <img src="images/git-branch4.png" />
+            </p>
           </section>
         </section>
 
         <section>
-          <p>Инициализируем репозиторий</p>
-          <pre><code>git init</code></pre>
-          <p>Делаем первый коммит</p>
-          <pre><code>git commit -m 'initial commit'</code></pre>
+          <section>
+            <h3>Конфликты</h3>
+            <p>Конфликты возникают когда необходимо объединить правки с помощью <c>git merge</c>, но в обеих ветках делались правки над одними и теми же строчками кода</p>
+            <p>Git делает все так, что Вы не получаете эффекта неожиданности.</p>
+          </section>
+
+          <section>
+            <h4>Воспроизведем</h4>
+            <p>Делаем новую ветку <c>another_branch</c>, переходим в неё</p>
+            <p>Делаем правки, делаем коммит</p>
+            <p>Возвращаемся в <c>master</c></p>
+            <p>Делаем правки в тех же строчках, делаем коммит</p>
+            <p>Теперь мы попытаемся сделать <c>git merge</c></p>
+          </section>
+
+          <section>
+            <p>Вот что мы получим</p>
+            <p>
+            <img src="images/git-conflict.png" />
+            </p>
+          </section>
+
+          <section>
+            <p>А вот как <c>git diff</c> нам поможет</p>
+            <p>
+            <img src="images/git-conflict2.png" />
+            </p>
+          </section>
+
+          <section>
+            <p>Теперь мы должны разрешить этот конфликт чтобы не испортить работающий код</p>
+            <p>Открываем файл конфликта в редакторе, и пытаемся получить желаемый результат</p>
+            <p>Теперь когда мы уверены в том что наш код выглядит так как надо, говорим Git'у о том что этот файл можно коммитить</p>
+            <pre><code>
+&gt; git add index.html
+&gt; git commit
+            </code></pre>
+          </section>
+
+          <section>
+            <img src="images/git-conflict3.png" />
+          </section>
         </section>
 
         <section>
-          <h2>Александр Шухин</h2>
-          <p>Email: <a href="mailto:a.medium@gmail.com">a.medium@gmail.com</a></p>
-          <p>Telegram: @alex_medium</a></p>
-          <p>Github: <a href="https://github.com/alexshuhin">alexshuhin</a></p>
+          <section>
+            <h3>Удаленные репозитории</h3>
+            <p>Мы можем сказать Git места где ещё лежит код. Часто это центральный репозиторий на каком нибудь Github</p>
+            <p>С этого репозитория мы можем получать изменения, а так же зальвать туда свои коммиты, ветки</p>
+          </section>
+
+          <section>
+            <p>Склонируем наш репозиторий в соседнюю папку</p>
+            <pre><code>
+&gt; cd .. # перейдем в директорию выше
+&gt; git clone my_project my_project_clone # операция клонирования
+&gt; cd my_project_clone # перейдем в новый проект
+            </code></pre>
+            <img src="images/git-remote.png" />
+          </section>
+
+          <section>
+            <p>Сделаем правки в мастер с сделаем коммит, как обычно</p>
+            <p>Теперь мы можем залить наш новый коммит в центральный репозиторий</p>
+            <pre><code>
+&gt; git push origin master
+            </code></pre>
+          </section>
+
+          <section>
+            <p>На центральном репозитории при этом создался коммит, как если бы мы работали в нем, ветка <c>master</c> продвинулась</p>
+          </section>
+
+          <section>
+            <p>Если мы хотим получить новую версию ветки <c>master</c>, мы должны выполнить следующую команду</p>
+            <pre><code>
+&gt; git pull origin/master:master
+            </code></pre>
+            <p>Вот и вся магия!</p>
+          </section>
         </section>
+
+        <section>
+          <h3>Почти закончили</h3>
+          <p>Информации по Git очень много, вот парочка:</p>
+          <ul>
+            <li>Must read <a href="https://git-scm.com/book/ru/v2">Git - Book</a></li>
+            <li>Хорошая статья на Opennet: <a href="http://www.opennet.ru/base/dev/git_edit_history.txt.html">Opennet - Git</a></li>
+            <li>Официальный мануал по Git: <c>man git</c></li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Вопросы?</h1>
+        </section>
+
       </div>
     </div>
 
